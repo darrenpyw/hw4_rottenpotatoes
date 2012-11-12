@@ -11,6 +11,7 @@ end
 
 Given /I am on the details page for "(.*)"/ do |title|
   movie = Movie.find_by_title("#{title}")
+  puts movie[:title]
   visit %(/movies/#{movie[:id]})
 end
 
@@ -19,6 +20,15 @@ When /I go to the edit page for "(.*)"/ do |movie_title|
 #step %Q(go to /movies/#{movie[:id]}/edit)
 #  step %Q(I go to the edit page for #{movie[:id]})
   visit %Q(/movies/#{movie[:id]}/edit)
+end
+
+When /I follow "(.*)"/ do |link|
+  click_link(link)
+end
+
+Then /I should be on the Similar Movies page for "(.*)"/ do
+#  visit %Q(/movies/find_by_director)
+#  puts page.all
 end
 
 Then /the director of "(.*)" should be "(.*)"/ do |title, director|
@@ -31,7 +41,14 @@ Then /I should see the following movies/ do |movies_table|
     # each returned element will be a hash whose key is the table header.
     if !(movie[:rating] =~ /[PG||R]/) then flunk "sort by rating is not working" end
   end
-#flunk "Unimplemented"
+end
+
+Then /I should see "(.*)"/ do |movie|
+flunk "Unimplemented"
+end
+
+Then /I should not see "(.*)"/ do |movie|
+flunk "Unimplemented"
 end
 
 Then /I should not see the following movies/ do |movies_table|
