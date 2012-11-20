@@ -14,11 +14,14 @@ group :development do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'guard-spork'
+  gem 'spork'
 end
 
 group :test do
   gem 'cucumber-rails'
-  gem 'cucumber-rails-training-wheels'
+  gem 'ZenTest'
+#gem 'cucumber-rails-training-wheels'
 end
 
 group :production do

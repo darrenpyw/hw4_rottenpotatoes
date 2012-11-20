@@ -11,7 +11,7 @@ end
 
 Given /I am on the details page for "(.*)"/ do |title|
   movie = Movie.find_by_title("#{title}")
-  puts movie[:title]
+#puts movie[:title]
   visit %(/movies/#{movie[:id]})
 end
 
@@ -26,9 +26,9 @@ When /I follow "(.*)"/ do |link|
   click_link(link)
 end
 
-Then /I should be on the Similar Movies page for "(.*)"/ do
+Then /I should be on the Similar Movies page for "(.*)"/ do |movie|
 #  visit %Q(/movies/find_by_director)
-#  puts page.all
+  if !(page.should have_content("#{movie}")) then flunk "did not get to the correct page. Is routing correct?" end
 end
 
 Then /the director of "(.*)" should be "(.*)"/ do |title, director|
@@ -44,11 +44,11 @@ Then /I should see the following movies/ do |movies_table|
 end
 
 Then /I should see "(.*)"/ do |movie|
-flunk "Unimplemented"
+  if !(page.should have_content("#{movie}")) then flunk "The movie #{movie} we're looking for is not found" end
 end
 
 Then /I should not see "(.*)"/ do |movie|
-flunk "Unimplemented"
+  if (page.should_not have_content("#{movie}")) then flunk "The movie #{movie} we're looking for is not found" end
 end
 
 Then /I should not see the following movies/ do |movies_table|
@@ -58,7 +58,9 @@ Then /I should not see the following movies/ do |movies_table|
   end
 #flunk "Unimplemented"
 end
-
+Then /I should be on the home page/ do
+  page.should have_content("All Movies")
+end
 Then /I should not see any movies/ do
   rows= page.all("table#movies tbody tr td[1]").map {|t| t.text}.size
   rows.should == 0
