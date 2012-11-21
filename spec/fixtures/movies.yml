@@ -1,0 +1,17 @@
+movie1:
+  title: Star Wars
+  rating: G
+  release_date: 1990/01/01
+  director: George Lucas
+
+movie2:
+  title: Aliens
+  rating: G
+  release_date: 1990/01/01
+  director:
+
+movie3:
+  title: Indiana Jones
+  rating: G
+  release_date: 1990/01/01
+  director: George Lucas
