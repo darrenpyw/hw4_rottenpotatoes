@@ -1,4 +1,9 @@
 Rottenpotatoes::Application.routes.draw do
+
+  match 'login' => 'sessions#new'
+  match 'logout' => 'sessions#destroy'
+  resources :sessions, only:[ :new, :create, :destroy] 
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -19,6 +24,8 @@ Rottenpotatoes::Application.routes.draw do
       get 'same_director'
     end
   end
+  #get "users/new"
+  resources :users
   # Sample resource route with options:
   #   resources :products do
   #     member do
@@ -54,7 +61,7 @@ Rottenpotatoes::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'movies#index'
 
   # See how all your routes lay out with "rake routes"
 

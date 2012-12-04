@@ -1,0 +1,8 @@
+darren:
+  name: darren
+  password_digest: <%= BCrypt::Password.create("secret") %>
+
+karen:
+  name: karen
+  password_digest: password
+

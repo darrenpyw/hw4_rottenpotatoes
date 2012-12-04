@@ -1,4 +1,14 @@
 -#  This file is app/views/movies/index.html.haml
+-if session[:user_id] == nil
+  = link_to 'Login', login_path
+  or
+  = link_to 'Register to become a member', new_user_path
+
+-if session[:user_id] != nil
+  Welcome 
+  = session[:name]
+  = link_to 'Logout', sessions_destroy_path
+
 %h1 All Movies
 
 = form_tag movies_path, :method => :get, :id => 'ratings_form' do
