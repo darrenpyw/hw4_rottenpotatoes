@@ -8,6 +8,7 @@ Background:
   Given I am on the RottenPotatoes home page
 
 Scenario: User is not registered to the site
+  Given I am on the RottenPotatoes home page
   Then I should see "Login or Register to become a member"
 
 Scenario: register to be member of the site

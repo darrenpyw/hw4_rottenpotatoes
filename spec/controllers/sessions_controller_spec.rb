@@ -11,11 +11,18 @@ describe SessionsController do
 #      response.should redirect_to(login_url)
 #    end
 #  end
+  describe "Start new session with invalid credentials" do
+    it "should fail" do
+      post :create, {name: "darren", password: "invalid", password_confirmation: "secret"}
+      session[:name].should eq(nil)
+      response.should have_rendered("new")
+    end
+  end
 
   describe "Start new session with valid credentials" do
     it "should pass" do
       darren = users(:darren)
-      get :create, {name: "darren", password: "secret", password_confirmation: "secret"}
+      post :create, {name: "darren", password: "secret", password_confirmation: "secret"}
       session[:name].should eq(darren.name)
       response.should redirect_to(movies_path)
     end
@@ -23,8 +30,9 @@ describe SessionsController do
 
   describe "Logout of session" do
     it "session should not have any user info" do
-      get :create, {name: "darren", password: "secret", password_confirmation: "secret"}
+      post :create, {name: "darren", password: "secret", password_confirmation: "secret"}
       get :destroy
+      session[:user_id].should eq(nil)
       session[:name].should eq(nil)
       response.should redirect_to(movies_path)
     end

@@ -4,7 +4,7 @@
   <% end%>
 <h1>Login</h1>
 
-<%= form_tag do %>
+<%= form_for(:session, url: sessions_path) do %>
     <legend>Please login</legend>
     <div>
       <%= label_tag :name, "Name" %>
