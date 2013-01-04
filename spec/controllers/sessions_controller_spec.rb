@@ -11,9 +11,10 @@ describe SessionsController do
 #      response.should redirect_to(login_url)
 #    end
 #  end
+
   describe "Start new session with invalid credentials" do
     it "should fail" do
-      post :create, {name: "darren", password: "invalid", password_confirmation: "secret"}
+      post :create, {name: "darren", password: "invalid"}
       session[:name].should eq(nil)
       response.should have_rendered("new")
     end

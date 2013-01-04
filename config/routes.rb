@@ -1,9 +1,15 @@
 Rottenpotatoes::Application.routes.draw do
 
-  match 'login' => 'sessions#new'
-  match 'logout' => 'sessions#destroy'
+  match '/login' => 'sessions#new'
+  match '/logout' => 'sessions#destroy', via: :delete
   resources :sessions, only:[ :new, :create, :destroy] 
-
+  
+  match '/youtube/top_rated' => 'youtube#top_rated'
+  resources :youtube, only:[:top_rated]
+#    member do
+#      get 'top_rated'
+#    end
+#  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

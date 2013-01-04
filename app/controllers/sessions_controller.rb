@@ -9,7 +9,8 @@ class SessionsController < ApplicationController
       session[:name]=user.name
       redirect_to movies_url
     else
-      render 'new', alert: "Invalid username/password"
+      flash[:notice] = "Invalid user/password"
+      render 'new'
     end
   end
 
