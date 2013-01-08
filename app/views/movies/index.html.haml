@@ -8,6 +8,7 @@
 -if session[:user_id] != nil
   Welcome 
   = session[:name]
+  = link_to 'Profile', user_path(:id => session[:user_id])
   = link_to 'Logout', logout_path
 
 %h1 All Movies

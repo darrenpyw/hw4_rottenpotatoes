@@ -1,8 +1,9 @@
 Rottenpotatoes::Application.routes.draw do
 
   match '/login' => 'sessions#new'
-  match '/logout' => 'sessions#destroy', via: :delete
-  resources :sessions, only:[ :new, :create, :destroy] 
+  match '/logout' => 'sessions#destroy'
+  match '/profile' => 'users#show'
+  resources :sessions, only:[ :new,:show, :create, :destroy] 
   
   match '/youtube/top_rated' => 'youtube#top_rated'
   resources :youtube, only:[:top_rated]

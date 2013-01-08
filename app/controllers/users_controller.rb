@@ -48,6 +48,7 @@ class UsersController < ApplicationController
         flash[:notice] = "Welcome #{@user.name}"
         session[:user_id] = @user.id
         session[:name] = @user.name
+        Notifier.welcome(@user).deliver
         format.html { redirect_to movies_url}
         format.json { render json: @user, status: :created, location: @user }
       else
